@@ -36,3 +36,42 @@ export const getMovieDetails = async movieId => {
     throw error;
   }
 };
+
+export const getMovieCast = async (movieId, apiKey) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
+    );
+    const data = await response.json();
+    return data.cast;
+  } catch (error) {
+    console.error('Error fetching movie cast:', error);
+    throw error;
+  }
+};
+
+export const getMovieReviews = async (movieId, apiKey) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}`
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error('Error fetching movie reviews:', error);
+    throw error;
+  }
+};
+
+export const getActorDetails = async (actorId, apiKey) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${actorId}?api_key=${apiKey}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching actor details:', error);
+    throw error;
+  }
+};

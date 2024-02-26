@@ -6,7 +6,7 @@ import MovieDetails from './components/MoviesDetails';
 
 export const App = () => {
   return (
-    <Router>
+    <Router basename="/goit-react-hw-05-movies">
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/movies" element={<Movies />} />

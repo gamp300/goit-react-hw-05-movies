@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Links, List } from './Main.Styled';
 import { getTrendingMovies } from '../Api';
 
 const Home = () => {
@@ -20,16 +21,20 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
+      <Links>
+        <Link to="/">Home</Link>
+        <Link to="/movies">Movies</Link>
+      </Links>
       <h2>Popular Movies</h2>
       <ul>
         {movies.map(movie => (
-          <li key={movie.id}>
+          <List key={movie.id}>
             <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
+          </List>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 

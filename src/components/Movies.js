@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Links, List } from './Main.Styled';
 import { searchMovies } from '../Api';
 
 const Movies = () => {
@@ -15,22 +17,35 @@ const Movies = () => {
     }
   };
 
+  const handleKeyDown = async event => {
+    if (event.key === 'Enter') {
+      await handleSearch();
+    }
+  };
+
   return (
-    <div>
+    <Container>
+      <Links>
+        <Link to="/">Home</Link>
+        <Link to="/movies">Movies</Link>
+      </Links>
       <h2>Search Movies</h2>
       <input
         type="text"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Enter search term"
       />
       <button onClick={handleSearch}>Search</button>
       <ul>
         {searchResults.map(movie => (
-          <li key={movie.id}>{movie.title}</li>
+          <List key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          </List>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 
